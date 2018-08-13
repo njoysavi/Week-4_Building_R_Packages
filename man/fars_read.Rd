@@ -19,6 +19,6 @@ data from .csv file, stored on disk. This data contains a nationwide census, pro
 American public yearly data, regarding fatal injuries suffered in motor vehicle traffic crashes.
 }
 \examples{
-fars_read('accident_2014.csv.bz2')
+fars_read('accident_2013.csv.bz2')
 
 }

@@ -18,10 +18,13 @@
 #' @import dplyr
 #'
 #' @examples
-#' fars_read('accident_2014.csv.bz2')
+#' fars_read('accident_2013.csv.bz2')
 #'
 #' @export
 fars_read <- function(filename) {
+  l=system.file("extdata", package = "Week4BuildingRPackages")
+  f=filename
+  filename=paste(l,f, sep="/")
   if(!file.exists(filename))
     stop("file '", filename, "' does not exist")
   data <- suppressMessages({
@@ -39,7 +42,7 @@ fars_read <- function(filename) {
 #' @return This function returns a file in CSV format which is related to the given \code{year}
 #'
 #' @examples
-#' make_filename(2014)
+#' make_filename(2013)
 #'
 #' @export
 make_filename <- function(year) {
@@ -57,7 +60,7 @@ make_filename <- function(year) {
 #' @import magrittr
 #'
 #' @examples
-#' fars_read_years(2014)
+#' fars_read_years(2013)
 #'
 #' @return This function returns a data frame which includes data for a given list of years \code{years}
 #' @export
@@ -65,9 +68,6 @@ fars_read_years <- function(years) {
   lapply(years, function(year) {
     file <- make_filename(year)
     tryCatch({
-      l=system.file("extdata", package = "Week4BuildingRPackages")
-      f=file
-      file=paste(l,f, sep="/")
       fars_data <- fars_read(file)
       dplyr::mutate(fars_data, year = year) %>%
         dplyr::select(MONTH, year)
@@ -118,15 +118,15 @@ fars_summarize_years <- function(years) {
 #' @import graphics
 #'
 #' @examples
-#' fars_map_state(49, 2015)
+#' fars_map_state(49, 2013)
 #'
 #' @export
 fars_map_state <- function(state.num, year) {
   filename <- make_filename(year)
-  l=system.file("extdata", package = "Week4BuildingRPackages")
-  f=filename
-  file=paste(l,f, sep="/")
-  data <- fars_read(file)
+  #l=system.file("extdata", package = "Week4BuildingRPackages")
+  #f=filename
+  #file=paste(l,f, sep="/")
+  data <- fars_read(filename)
   state.num <- as.integer(state.num)
 
   if(!(state.num %in% unique(data$STATE)))

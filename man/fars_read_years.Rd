@@ -16,6 +16,6 @@ This function returns a data frame which includes data for a given list of years
 This function takes an input as \code{years} and then filters the information for that given list
 }
 \examples{
-fars_read_years(2014)
+fars_read_years(2013)
 
 }

@@ -19,6 +19,6 @@ This function takes an input as \code{year} and \code{state.num} . It then displ
 in graphical format
 }
 \examples{
-fars_map_state(49, 2015)
+fars_map_state(49, 2013)
 
 }
