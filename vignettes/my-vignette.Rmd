@@ -1,0 +1,73 @@
+  ---
+title: "Fatality Analysis Reporting System (FARS)"
+author: "Savinay Sehgal"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Package Description
+`Week4BuildingRPackages` package reads and plots Fatality Analysis Reporting System data from the [US National Highway Traffic Safety Administration]
+
+[FARS] is a nationwide census providing the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes
+
+## Load Packages
+
+```{r}
+library(Week4BuildingRPackages)
+library(maps)
+library(tidyr)
+library(magrittr)
+library(dplyr)
+library(readr)
+```
+
+## Included data
+
+Data files included within the package are:
+
+```{r}
+list.files(system.file("extdata", package = "Week4BuildingRPackages"))
+```
+
+## Package Functions
+
+### Function `make_filename`
+
+This function makes a file in CSV format which is related to the given year: 
+
+```{r}
+yr <- 2013
+make_filename(yr)
+```
+
+### Function `fars_read_years`
+
+This function takes an input as years and then filters the information for that given list
+
+```{r}
+fars_read_years(2013)
+```
+
+
+### Function `fars_summarize_years`
+
+This function takes an input as years and then summarizes the information for that given list
+
+```{r}
+fars_summarize_years(2013)
+```
+
+### Function `fars_map_state`
+
+This function takes an input as year and state.num. It then display that information
+in graphical format
+
+```{r}
+state_num <- 1
+yr <- 2013
+fars_map_state(state_num, yr)
+```
